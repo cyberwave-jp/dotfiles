@@ -5,28 +5,40 @@
   chenged = green
   untracked = cyan
 [core]
+  filemode = false
   excludesfile = ~/.gitignore_global
   attributefile = ~/.gitattributes_global
   autocrlf = false
-	editor = vim
-	quotepath = false
-	pager = nkf -w | LESSCHARSET=utf-8 less
+  editor = vim
+  quotepath = false
+  pager = nkf -w | LESSCHARSET=utf-8 less -XS
+
 [alias]
+  g  = git
+  s  = status
   st = status
   co = commit
   ch = checkout
   br = branch
   df = diff --ignore-space-at-eol --color-words
   dc = diff --cached
+  dn = diff --name-only
   lg = log -p
   lol = log --graph --decorate --pretty=oneline --abbr
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  graph = log --graph --date-order --all --pretty=format:'%h %Cred%d %Cgreen%ad %Cblue %cn %Creset%s' --date=short
   ls = ls-files
   sh = show-branch
   today = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --since=midnight --oneline --author=\"`git config --get user.name`\"'"
+  dm = diff --diff-filter=M
+  brc = branch --contains
 [push]
-	default = simple
+  default = simple
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
+[diff]
+  tool = default-difftool
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
